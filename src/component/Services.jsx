@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardContent, Button, Modal, Backdrop, Fade, IconButton, TextField } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
+import { Box, Typography, Grid, Card, CardContent, Button, IconButton, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../component/LogoBW.png'; // Adjust the path as necessary
 import Footer from './Footer'; // Assuming you have a Footer component
 import ResponsiveText from './ResponsiveText'; // Assuming you have a ResponsiveText component
+
 const services = [
     {
         title: 'Digital Marketing',
@@ -54,15 +54,6 @@ const services = [
 
 const Services = () => {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
-    const [selectedService, setSelectedService] = useState('');
-
-    const handleOpen = (serviceTitle) => {
-        setSelectedService(serviceTitle);
-        setOpen(true);
-    };
-
-
 
     return (
         <Box sx={{ bgcolor: '#000', minHeight: '100vh', py: 8, color: 'white' }}>
@@ -79,19 +70,19 @@ const Services = () => {
                 </Typography>
 
                 {/* Text for Small Screens */}
-                <Typography variant="h4" sx={{ fontWeight: 700, display: { xs: 'block', md: 'none' },ml: 2 }}>
-                    
+                <Typography variant="h4" sx={{ fontWeight: 700, display: { xs: 'block', md: 'none' }, ml: 2 }}>
+                    Providing best Services for client
                 </Typography>
             </Box>
+
             <Grid container spacing={4} justifyContent="center" sx={{ py: 10 }}>
                 {services.map((service, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ display: 'flex' }}>
                         <Card
                             sx={{
                                 bgcolor: '#1a1a1a',
                                 p: 2,
                                 borderRadius: 3,
-                                minHeight: '350px',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'space-between',
@@ -101,19 +92,23 @@ const Services = () => {
                                     transform: 'translateY(-10px)',
                                     boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)',
                                 },
+                                height: '100%',
+                                width: '100%',
                             }}
                         >
-                            <CardContent>
-                                <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: 'white' }}>
-                                    {service.title}
-                                </Typography>
-                                <Box component="ul" sx={{ listStyle: 'none', pl: 0, mb: 4 }}>
-                                    {service.items.map((item, idx) => (
-                                        <Box key={idx} component="li" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                                            <Typography sx={{ mr: 1, color: 'blue' }}>➜</Typography>
-                                            <Typography sx={{ color: 'white' }}>{item}</Typography>
-                                        </Box>
-                                    ))}
+                            <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                                <Box>
+                                    <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: 'white' }}>
+                                        {service.title}
+                                    </Typography>
+                                    <Box component="ul" sx={{ listStyle: 'none', pl: 0, mb: 4 }}>
+                                        {service.items.map((item, idx) => (
+                                            <Box key={idx} component="li" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                                                <Typography sx={{ mr: 1, color: 'blue' }}>➜</Typography>
+                                                <Typography sx={{ color: 'white' }}>{item}</Typography>
+                                            </Box>
+                                        ))}
+                                    </Box>
                                 </Box>
                                 <Button
                                     variant="text"
@@ -137,9 +132,7 @@ const Services = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-
                 ))}
-
             </Grid>
 
             <ResponsiveText />

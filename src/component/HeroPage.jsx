@@ -98,7 +98,7 @@ function HeroPage() {
 
             {/* Navbar */}
             <AppBar position="static" sx={{ bgcolor: 'transparent', boxShadow: 'none' }}>
-                <Toolbar sx={{ justifyContent: 'space-around', gap: 4, mt: '3rem' }}>
+                <Toolbar sx={{ justifyContent: 'space-between', gap: 4, mt: '-1rem' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <img
                             src={iconBandW}
@@ -122,24 +122,18 @@ function HeroPage() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     color: 'white',
-                    textAlign: 'center',
-                    px: 2,
+                    textAlign: 'left',
+                    
+                    mt: { xs: -15, md: -18 }
                 }}
             >
                 <Container maxWidth="lg">
-                    <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '2.5rem', md: '5rem' }, lineHeight: 1.1 }}>
-                        Building Bridges between<br />BRANDS and AUDIENCES.
+                    <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '1.5rem', md: '4rem' }, lineHeight: 1.1,ml: {  md: '-190px' }}}>
+                        Building Bridges between , <br />BRANDS and AUDIENCES.
                     </Typography>
 
-                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', mt: 5 }}>
-                        <Typography variant="body1" sx={{ fontWeight: 'bold', mb: 3, textAlign: 'center' }}>
-                            Creative Solutions for Modern Brands
-                        </Typography>
-
-                        <Typography variant="body1" sx={{ maxWidth: '500px', fontSize: '1.1rem', mt: { xs: 3, md: 0 } }}>
-                            We help businesses at critical inflection points define, design and build new futures.
-                        </Typography>
-                    </Box>
+                    
+                    
                 </Container>
             </Box>
 
@@ -361,7 +355,7 @@ function HeroPage() {
             {/* Scroll Down Section with Same Background */}
             <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
                 {/* Background Video */}
-                <video
+                {/* <video
                     ref={videoRef}
                     key={currentVideoIndex}
                     autoPlay
@@ -378,7 +372,7 @@ function HeroPage() {
                     }}
                 >
                     <source src={videos[currentVideoIndex]} type="video/mp4" />
-                </video>
+                </video> */}
 
                 {/* Tint Overlay */}
                 <Box
