@@ -1,13 +1,20 @@
 import React from 'react';
-import HeroPage from './component/HeroPage.jsx';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HeroPage from './component/HeroPage';
+import Services from './component/Services'; // Create this page
+import Careers from './component/careers';
+import StaticMapNagpur from './component/Location'; // Create this page
 function App() {
-  return (
-    <div>
-      <HeroPage />
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HeroPage />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/locations" element={<StaticMapNagpur />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
