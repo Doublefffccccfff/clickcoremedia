@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import video1 from '../component/hero.mp4';
 import video2 from '../component/hero2.mp4';
 import video3 from '../component/hero3.mp4';
-import menuVideo from '../component/MenuSection.mp4';
+import menuVideo from '../component/menuSection.mp4';
 import iconBandW from '../component/LogoTrans.png';
 import iconCC from '../component/ClickCore.png';
 import ResponsiveText from './ResponsiveText';
