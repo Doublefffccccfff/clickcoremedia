@@ -16,7 +16,7 @@ import menuVideo from '../component/menuSection.mp4';
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation(); // 👈 Track route changes
+    const location = useLocation();
 
     const menuItems = [
         { name: 'Services', path: '/services' },
@@ -32,25 +32,31 @@ const Header = () => {
         setMenuOpen(false);
     };
 
-    // 👇 Automatically close menu on route change
     useEffect(() => {
         setMenuOpen(false);
     }, [location]);
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [menuOpen]);
 
     return (
         <>
-            {/* Navbar */}
-            <AppBar position="static" sx={{ bgcolor: 'transparent', boxShadow: 'none', }}>
-                <Toolbar sx={{ justifyContent: 'space-between', gap: 4, mt: '-1rem' }}>
+            <AppBar position="static" sx={{ bgcolor: 'transparent', boxShadow: 'none' }}>
+                <Toolbar sx={{ justifyContent: 'space-between', mt: '-1rem' }}>
                     <Box
                         onClick={() => navigate('/')}
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            '&:hover': {
-                                cursor: 'pointer',
-                                 
-                            },
+                            '&:hover': { cursor: 'pointer' },
                         }}
                     >
                         <img
@@ -60,14 +66,47 @@ const Header = () => {
                         />
                     </Box>
 
-
-                    <IconButton onClick={handleMenuToggle} sx={{ color: 'white' }}>
-                        <MenuIcon />
+                    <IconButton
+                        onClick={handleMenuToggle}
+                        sx={{
+                            width: 40,
+                            height: 40,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                            gap: '6px',
+                            cursor: 'pointer',
+                            position: menuOpen ? 'fixed' : 'static',
+                            right: 50,
+                            zIndex: 10000,
+                            '& div': {
+                                width: '30px',
+                                height: '3px',
+                                backgroundColor: 'white',
+                                transition: 'all 0.3s ease',
+                                transformOrigin: 'center',
+                            },
+                            '& .line1': {
+                                transform: menuOpen ? 'rotate(45deg) translate(6.5px, 6.5px)' : 'rotate(0)',
+                            },
+                            '& .line2': {
+                                opacity: menuOpen ? 0 : 1,
+                            },
+                            '& .line3': {
+                                transform: menuOpen ? 'rotate(-45deg) translate(6.5px, -6.5px)' : 'rotate(0)',
+                            },
+                        }}
+                    >
+                        <div className="line1" />
+                        <div className="line2" />
+                        <div className="line3" />
                     </IconButton>
+
+
                 </Toolbar>
             </AppBar>
 
-            {/* Full-Screen Menu Overlay */}
             {menuOpen && (
                 <Box
                     sx={{
@@ -78,9 +117,12 @@ const Header = () => {
                         height: '100vh',
                         display: 'flex',
                         zIndex: 9999,
+                        transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
+                        transition: 'transform 2s ease-in-out',
                     }}
                 >
-                    {/* Left Section (White) */}
+
+                    {/* Left Section */}
                     <Box
                         sx={{
                             flex: 1,
@@ -97,7 +139,7 @@ const Header = () => {
                             <img
                                 src={iconCC}
                                 alt="Click Core Logo"
-                                style={{ height: '200px', objectFit: 'contain', }}
+                                style={{ height: '200px', objectFit: 'contain' }}
                             />
                         </Box>
 
@@ -105,17 +147,13 @@ const Header = () => {
                             {menuItems.map((item) => (
                                 <Box
                                     key={item.name}
-                                    onClick={() => {
-                                        navigate(item.path);
-                                    }}
+                                    onClick={() => navigate(item.path)}
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
                                         mb: 3,
                                         color: 'black',
-                                        '&:hover': {
-                                            cursor: 'pointer',
-                                        }
+                                        '&:hover': { cursor: 'pointer' },
                                     }}
                                 >
                                     <Typography sx={{ fontSize: '2rem', fontWeight: 500 }}>
@@ -135,9 +173,7 @@ const Header = () => {
                                     alignItems: 'center',
                                     mb: 3,
                                     color: 'black',
-                                    '&:hover': {
-                                        cursor: 'pointer',
-                                    },
+                                    '&:hover': { cursor: 'pointer' },
                                 }}
                             >
                                 <Typography sx={{ fontSize: '2rem', fontWeight: 500 }}>Contact</Typography>
@@ -145,7 +181,6 @@ const Header = () => {
                             </Box>
                         </Box>
 
-                        {/* Social Icons */}
                         <Box sx={{ display: 'flex', gap: 2 }}>
                             <IconButton
                                 component="a"
@@ -161,7 +196,7 @@ const Header = () => {
                                         color: 'white',
                                         transform: 'scale(1.1)',
                                         boxShadow: '0 0 10px #fa7e1e',
-                                    }
+                                    },
                                 }}
                             >
                                 <InstagramIcon />
@@ -177,7 +212,7 @@ const Header = () => {
                                         color: 'white',
                                         transform: 'scale(1.1)',
                                         boxShadow: '0 0 10px #ff0000',
-                                    }
+                                    },
                                 }}
                             >
                                 <YouTubeIcon />
@@ -197,7 +232,7 @@ const Header = () => {
                                         color: 'white',
                                         transform: 'scale(1.1)',
                                         boxShadow: '0 0 10px #25D366',
-                                    }
+                                    },
                                 }}
                             >
                                 <WhatsAppIcon />
@@ -217,7 +252,7 @@ const Header = () => {
                                         color: 'white',
                                         transform: 'scale(1.1)',
                                         boxShadow: '0 0 10px #ea4335',
-                                    }
+                                    },
                                 }}
                             >
                                 <EmailIcon />
@@ -225,7 +260,7 @@ const Header = () => {
                         </Box>
                     </Box>
 
-                    {/* Right Section (Black) */}
+                    {/* Right Section */}
                     <Box
                         sx={{
                             flex: 1,
@@ -240,32 +275,35 @@ const Header = () => {
                         }}
                     >
                         {/* Close Button */}
-                        <IconButton
+                        {/* <IconButton
                             onClick={handleMenuClose}
                             sx={{
-                                position: 'absolute',
+                                position: 'fixed',
                                 top: 20,
                                 right: 20,
                                 color: 'white',
+                                zIndex: 10000,
                             }}
                         >
                             <CloseIcon />
-                        </IconButton>
+                        </IconButton> */}
 
                         {/* Menu Video */}
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            style={{
-                                height: '600px',
-                                width: 'auto',
-                                borderRadius: '20px',
-                                marginLeft: '0px'
-                            }}
-                        >
-                            <source src={menuVideo} type="video/mp4" />
-                        </video>
+                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                style={{
+                                    height: '500px',
+                                    width: 'auto',
+                                    borderRadius: '20px',
+                                    marginLeft: '-40px',
+                                }}
+                            >
+                                <source src={menuVideo} type="video/mp4" />
+                            </video>
+                        </Box>
                     </Box>
                 </Box>
             )}

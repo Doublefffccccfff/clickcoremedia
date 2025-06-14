@@ -76,21 +76,47 @@ function HeroPage() {
             <Box
                 sx={{
                     height: '100vh',
+                    width: '100%', // Ensure full width
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
                     color: 'white',
                     textAlign: 'left',
-                    mt: { xs: -15, md: -18 }
+                    mt: { xs: -15, md: -18 },
+                    position: 'relative', // Must have
+                    
                 }}
             >
                 <Container maxWidth="lg">
-                    <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '1.5rem', md: '4rem' }, lineHeight: 1.1, ml: { md: '-190px' }}}>
-                        Building Bridges between , <br />BRANDS and AUDIENCES.
+                    <Typography
+                        variant="h2"
+                        sx={{
+                            fontWeight: 'bold',
+                            fontSize: { xs: '1.5rem', md: '4rem' },
+                            lineHeight: 1.1,
+                            ml: { md: '-190px' }
+                        }}
+                    >
+                        Building Bridges between,<br />BRANDS and AUDIENCES.
                     </Typography>
                 </Container>
+
+                {/* Bottom Right */}
+                <Box
+                    component="p"
+                    sx={{
+                        position: 'absolute',
+                        bottom: 20,
+                        right: 100,
+                        m: 0,
+                    }}
+                >
+                    / Believe
+                </Box>
             </Box>
+
+
 
             {/* Description Section */}
             <Box sx={{ bgcolor: '#e0e0e0', py: { xs: 3, md: 6 } }}>
@@ -133,7 +159,7 @@ function HeroPage() {
                         sx={{
                             fontWeight: 'bold',
                             color: 'white',
-                            fontSize: { xs: '3rem', md: '5rem' },
+                            fontSize: { xs: '3rem', md: '8rem' },
                             mb: 4,
                         }}
                     >
@@ -177,7 +203,7 @@ function HeroPage() {
                     </Box>
                 </Box>
             </Box>
-            
+
             <ResponsiveText />
             <Footer />
         </Box>

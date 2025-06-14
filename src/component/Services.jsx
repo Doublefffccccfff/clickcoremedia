@@ -119,7 +119,7 @@ const Services = () => {
                     {/* Services Grid */}
                     <Grid container spacing={4} justifyContent="center" sx={{ px: 2, mb: { xs: 8, md: 12 } }}>
                         {services.map((service, index) => (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ display: 'flex' }}>
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ display: 'flex',mb : 4 }}>
                                 <Card
                                     sx={{
                                         bgcolor: '#1a1a1a',
