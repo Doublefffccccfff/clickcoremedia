@@ -83,9 +83,15 @@ const Header = () => {
                             '& div': {
                                 width: '30px',
                                 height: '3px',
-                                backgroundColor: 'white',
+                                backgroundColor: {
+                                    xs: 'black',  // ✅ Always black on small screens
+                                    sm: 'white',  // ✅ White on larger screens
+                                },
                                 transition: 'all 0.3s ease',
                                 transformOrigin: 'center',
+                            },
+                            '&.white-lines div': { // ✅ Override for small screens when menu is closed
+                                backgroundColor: 'white',
                             },
                             '& .line1': {
                                 transform: menuOpen ? 'rotate(45deg) translate(6.5px, 6.5px)' : 'rotate(0)',
@@ -97,11 +103,13 @@ const Header = () => {
                                 transform: menuOpen ? 'rotate(-45deg) translate(6.5px, -6.5px)' : 'rotate(0)',
                             },
                         }}
+                        className={!menuOpen ? 'white-lines' : ''} // ✅ Add class only when menu is closed
                     >
                         <div className="line1" />
                         <div className="line2" />
                         <div className="line3" />
                     </IconButton>
+
 
 
                 </Toolbar>
@@ -267,8 +275,9 @@ const Header = () => {
                             bgcolor: 'black',
                             color: 'white',
                             position: 'relative',
-                            display: 'flex',
+
                             flexDirection: 'column',
+                            display: { xs: 'none', sm: 'flex' },
                             alignItems: 'center',
                             justifyContent: 'center',
                             gap: 3,

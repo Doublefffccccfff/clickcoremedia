@@ -95,7 +95,7 @@ function Footer() {
                     </Grid>
 
                     {/* Right Section */}
-                    <Grid item xs={12} md={5}>
+                    <Grid item xs={12} md={5} sx={{mb:-2}}>
                         <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
                             Contact Us
                         </Typography>
