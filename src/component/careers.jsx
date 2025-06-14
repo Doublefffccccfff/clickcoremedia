@@ -4,6 +4,7 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../component/LogoBW.png';
+// import Header from './Header'; // Import the shared Header component
 const Careers = () => {
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const Careers = () => {
                 
             }}
         >
-            
+            {/* <Header /> */}
             <Box sx={{mt: -10 }}>
                 <IconButton onClick={() => navigate('/')}>
                     <img src={Logo} alt="Logo" style={{ height: '400px' }} />
@@ -45,7 +46,7 @@ const Careers = () => {
             </Typography>
 
             {/* Back to Home Button */}
-            <Button
+            {/* <Button
                 variant="contained"
                 sx={{
                    background: 'linear-gradient(45deg,rgb(245, 73, 30),rgb(28, 12, 3))',
@@ -60,7 +61,7 @@ const Careers = () => {
                 onClick={() => navigate('/')}
             >
                 Back to Home
-            </Button>
+            </Button> */}
         </Box>
     );
 };

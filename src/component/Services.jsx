@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
-import { Box, Typography, Grid, Card, CardContent, Button, IconButton, Container } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import Logo from '../component/LogoBW.png'; // Adjust the path as necessary
-import Footer from './Footer'; // Assuming you have a Footer component
-import ResponsiveText from './ResponsiveText'; // Assuming you have a ResponsiveText component
+import React from 'react';
+import {
+    Typography,
+    Box,
+    Container,
+    Grid,
+    Card,
+    CardContent,
+    Button
+} from '@mui/material';
+import Header from './Header';
+import Footer from './Footer';
+import ResponsiveText from './ResponsiveText';
+import BackgroundImage from './BackGround.jpg';
 
 const services = [
     {
@@ -53,90 +61,164 @@ const services = [
 ];
 
 const Services = () => {
-    const navigate = useNavigate();
-
     return (
-        <Box sx={{ bgcolor: '#000', minHeight: '100vh', py: 8, color: 'white' }}>
-            <Box sx={{ position: 'absolute', top: 20, left: 20 }}>
-                <IconButton onClick={() => navigate('/')}>
-                    <img src={Logo} alt="Logo" style={{ height: '150px' }} />
-                </IconButton>
-            </Box>
+        <Box sx={{
+            position: 'relative',
+            minHeight: '100vh',
+            color: 'white',
+            overflowX: 'hidden'
+        }}>
+            {/* Fixed Background with Overlay */}
+            <Box sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: `url(${BackgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                zIndex: -2,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                }
+            }} />
 
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-                {/* Text for Large Screens */}
-                <Typography variant="h3" sx={{ fontWeight: 700, display: { xs: 'none', md: 'block' } }}>
-                    Providing best <br /> Services for client
-                </Typography>
+            {/* Header Component */}
+            <Header />
 
-                {/* Text for Small Screens */}
-                <Typography variant="h4" sx={{ fontWeight: 700, display: { xs: 'block', md: 'none' }, ml: 2 }}>
-                    Providing best Services for client
-                </Typography>
-            </Box>
+            {/* Main Content Area */}
+            <Box component="main" sx={{
+                position: 'relative',
+                zIndex: 1,
+                pt: { xs: '80px', md: '20px' } // Responsive padding for header
+            }}>
+                <Container maxWidth="xl">
+                    {/* Services Title */}
+                    <Box sx={{
+                        textAlign: 'center',
+                        mb: { xs: 4, md: 8 },
+                        px: 2
+                    }}>
+                        <Typography variant="h3" sx={{
+                            fontWeight: 700,
+                            fontSize: { xs: '2rem', md: '3.5rem' },
+                            lineHeight: 1.2
+                        }}>
+                            Providing best <br /> Services for client
+                        </Typography>
+                    </Box>
 
-            <Grid container spacing={4} justifyContent="center" sx={{ py: 10 }}>
-                {services.map((service, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ display: 'flex' }}>
-                        <Card
-                            sx={{
-                                bgcolor: '#1a1a1a',
-                                p: 2,
-                                borderRadius: 3,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-between',
-                                boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)',
-                                transition: 'transform 0.3s, box-shadow 0.3s',
-                                '&:hover': {
-                                    transform: 'translateY(-10px)',
-                                    boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)',
-                                },
-                                height: '100%',
-                                width: '100%',
-                            }}
-                        >
-                            <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                                <Box>
-                                    <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: 'white' }}>
-                                        {service.title}
-                                    </Typography>
-                                    <Box component="ul" sx={{ listStyle: 'none', pl: 0, mb: 4 }}>
-                                        {service.items.map((item, idx) => (
-                                            <Box key={idx} component="li" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                                                <Typography sx={{ mr: 1, color: 'blue' }}>➜</Typography>
-                                                <Typography sx={{ color: 'white' }}>{item}</Typography>
-                                            </Box>
-                                        ))}
-                                    </Box>
-                                </Box>
-                                <Button
-                                    variant="text"
-                                    component="a"
-                                    href="https://forms.gle/Sev2W2ydMoFE5Ggw6"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                    {/* Services Grid */}
+                    <Grid container spacing={4} justifyContent="center" sx={{ px: 2, mb: { xs: 8, md: 12 } }}>
+                        {services.map((service, index) => (
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ display: 'flex' }}>
+                                <Card
                                     sx={{
-                                        color: 'white',
-                                        borderBottom: '1px solid white',
-                                        borderRadius: 0,
+                                        bgcolor: '#1a1a1a',
+                                        p: 2,
+                                        borderRadius: 3,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between',
+                                        boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)',
+                                        transition: 'transform 0.3s, box-shadow 0.3s',
                                         '&:hover': {
-                                            borderBottom: '1px solid orangered',
-                                            color: 'orangered',
-                                            background: 'none',
+                                            transform: 'translateY(-10px)',
+                                            boxShadow: '0 0 25px rgba(255, 255, 255, 0.5)',
                                         },
+                                        height: '100%',
+                                        width: '100%',
                                     }}
                                 >
-                                    Contact Now →
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
+                                    <CardContent sx={{
+                                        flexGrow: 1,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between'
+                                    }}>
+                                        <Box>
+                                            <Typography variant="h5" sx={{
+                                                fontWeight: 600,
+                                                mb: 2,
+                                                color: 'white',
+                                                fontSize: { xs: '1.2rem', md: '1.5rem' }
+                                            }}>
+                                                {service.title}
+                                            </Typography>
+                                            <Box component="ul" sx={{
+                                                listStyle: 'none',
+                                                pl: 0,
+                                                mb: 4
+                                            }}>
+                                                {service.items.map((item, idx) => (
+                                                    <Box
+                                                        key={idx}
+                                                        component="li"
+                                                        sx={{
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            mb: 1
+                                                        }}
+                                                    >
+                                                        <Typography sx={{
+                                                            mr: 1,
+                                                            color: 'primary.main'
+                                                        }}>
+                                                            ➜
+                                                        </Typography>
+                                                        <Typography sx={{
+                                                            color: 'white',
+                                                            fontSize: { xs: '0.9rem', md: '1rem' }
+                                                        }}>
+                                                            {item}
+                                                        </Typography>
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        </Box>
+                                        <Button
+                                            variant="text"
+                                            component="a"
+                                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=clickcoremedia09@gmail.com&su=${encodeURIComponent(`${service.title} Inquiry`)}&body=${encodeURIComponent(`Hello, I am interested in your ${service.title} services. Please contact me with more details.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            sx={{
+                                                color: 'white',
+                                                borderBottom: '1px solid white',
+                                                borderRadius: 0,
+                                                alignSelf: 'flex-start',
+                                                px: 0,
+                                                '&:hover': {
+                                                    borderBottom: '1px solid',
+                                                    borderColor: 'primary.main',
+                                                    color: 'primary.main',
+                                                    background: 'none',
+                                                },
+                                            }}
+                                        >
+                                            Contact Now →
+                                        </Button>
 
-            <ResponsiveText />
-            <Footer />
+
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+
+                {/* Additional Components */}
+                <ResponsiveText />
+                <Footer />
+            </Box>
         </Box>
     );
 };
