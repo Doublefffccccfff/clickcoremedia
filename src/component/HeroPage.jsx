@@ -4,7 +4,7 @@ import Header from './Header'; // Import the new Header component
 import ResponsiveText from './ResponsiveText';
 import Footer from './Footer';
 
-import video1 from '../component/hero.mp4';
+import video1 from '../component/hero6.mp4';
 import video2 from '../component/hero2.mp4';
 import video3 from '../component/hero3.mp4';
 import menuVideo from '../component/menuSection.mp4';
