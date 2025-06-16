@@ -85,7 +85,7 @@ function HeroPage() {
                     textAlign: 'left',
                     mt: { xs: -15, md: -18 },
                     position: 'relative', // Must have
-                    
+
                 }}
             >
                 <Container maxWidth="lg">
@@ -107,9 +107,10 @@ function HeroPage() {
                     component="p"
                     sx={{
                         position: 'absolute',
-                        bottom: 20,
-                        right: 100,
+                        bottom: { xs: 50, md: 20 }, // Responsive bottom spacing
+                        right: { xs: 20, md: 50 }, // Responsive right spacing
                         m: 0,
+                        fontSize: { xs: '0.8rem', md: '1rem' } // Optional: text size adjustment
                     }}
                 >
                     / Believe
