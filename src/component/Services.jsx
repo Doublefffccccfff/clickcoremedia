@@ -11,7 +11,7 @@ import {
 import Header from './Header';
 import Footer from './Footer';
 import ResponsiveText from './ResponsiveText';
-import BackgroundImage from './BackGround.jpg';
+import BackgroundImage from './BG.png';
 
 const services = [
     {

@@ -50,7 +50,7 @@ const Header = () => {
     return (
         <>
             <AppBar position="static" sx={{ bgcolor: 'transparent', boxShadow: 'none' }}>
-                <Toolbar sx={{ justifyContent: 'space-between', mt: '-1rem' }}>
+                <Toolbar sx={{ justifyContent: 'space-between', mt: '-3rem' }}>
                     <Box
                         onClick={() => navigate('/')}
                         sx={{

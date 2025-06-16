@@ -3,7 +3,7 @@ import { Box, Typography, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../component/LogoBW.png'; // Adjust the path as necessary
 import Header from './Header'; // Import the shared Header component
-import BackgroundImage from './BackGround.jpg'; // Adjust the path to your background image
+import BackgroundImage from './BG.png'; // Adjust the path to your background image
 const StaticMap = () => {
     const navigate = useNavigate();
     return (
